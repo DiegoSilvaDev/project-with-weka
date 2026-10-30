@@ -103,5 +103,24 @@ public class DeteccaoDeFraudeBancaria {
         classificador.buildClassifier(dadosTreinamento); // Treina o modelo com os dados fornecidos
     }
 
+    // Classificação de novas transações
+    public String classificarTransacao(double valor, String origem) throws Exception{
+        // Cria uma nova transação para prever se é fraude ou não
+        Instance novaInstancia = new DenseInstance(dadosTreinamento.numAttributes());
+        novaInstancia.setDataset(dadosTreinamento);
+
+        novaInstancia.setValue(atributoValor, valor);
+        novaInstancia.setValue(atributoOrigem, origem);
+
+        // Pedir para o classificador prever se a nova transação é fraude ou não
+        // O resultado será 0.0 (não é fraude) ou 1.0 (é fraude), conforme o treinamento
+        double previsao = classificador.classifyInstance(novaInstancia);
+        // Obs: classifyInstance retorna um numero decimal/real porque usa o mesmo método para prever classes e números.
+
+        // Transforma o número previsot em texto (ex: 0 "não", 1 "sim") e monta a resposta final
+        return "Fraude: " + dadosTreinamento.classAttribute().value((int) previsao);
+
+    }
+
 
 }

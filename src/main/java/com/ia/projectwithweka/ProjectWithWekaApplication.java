@@ -9,5 +9,5 @@ public class ProjectWithWekaApplication {
     public static void main(String[] args) {
         SpringApplication.run(ProjectWithWekaApplication.class, args);
     }
-
+        
 }
