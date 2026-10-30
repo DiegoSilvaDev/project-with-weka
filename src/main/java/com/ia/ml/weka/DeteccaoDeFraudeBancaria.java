@@ -19,7 +19,7 @@ import java.util.ArrayList;
 
 public class DeteccaoDeFraudeBancaria {
     private Classifier classificador; // Modelo de classificação utilizado
-    private Instances dadosTreinaento; // Conjunto de dados usado para treinar o modelo
+    private Instances dadosTreinamento; // Conjunto de dados usado para treinar o modelo
 
     // Atributos de conjuntos de dados
     private Attribute atributoValor;
@@ -44,6 +44,34 @@ public class DeteccaoDeFraudeBancaria {
         atributos.add(atributoValor);
         atributos.add(atributoOrigem);
         atributos.add(atributoFraude);
+
+        // Criação do DataSet (estutura base da planilha)
+
+        // Cria o dataset chamado "transacoes" com os atributos definidos. Começa vazio (0 linhas).
+        dadosTreinamento = new Instances("transacoes", atributos, 0);
+
+        // Define o utilo atributo ("fraude") como a classe alvo para a previsão.
+        dadosTreinamento.setClassIndex(dadosTreinamento.numAttributes() - 1);
+    }
+
+    // Método auxiliar para criar e adicionar uma nova transação ao dataset de treino
+    /** Significa que aqui será criada uma nova instância de dados (uma linha.
+     * com a mesma quantidade de colunas (atributos) do dataset dadosTreinamento.
+     * é como criar uma nova linha em branco em uma planilha, onde você ainda vai
+     * preencher as colunas: valor, origem e fraude.
+     */
+    private void adicionarTransacao(double valor, String origem, String fraude){
+        Instance instancia = new DenseInstance(dadosTreinamento.numAttributes());
+        // setDataset(...) é uma configuração obrigadtoria que diz a instância:
+        /* "Você vai seguir a mesma estrutura do dataset - os mesmos atributos,
+          na mesma ordem e com os mesmos tipos de dados."
+         */
+        instancia.setDataset(dadosTreinamento);
+
+        instancia.setValue(atributoValor, valor);
+        instancia.setValue(atributoOrigem, origem);
+        instancia.setValue(atributoFraude, fraude);
+        dadosTreinamento.add(instancia);
 
     }
 
