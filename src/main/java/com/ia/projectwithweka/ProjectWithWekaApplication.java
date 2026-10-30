@@ -67,7 +67,10 @@ public class ProjectWithWekaApplication {
             } catch (Exception e) {
                 System.err.println("Erro ao classificar a transação: " + e.getMessage());
             }
+
+            detector.exibirArvore();
         };
+
     }
 
 

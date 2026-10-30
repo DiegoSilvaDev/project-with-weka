@@ -118,4 +118,18 @@ public class DeteccaoDeFraudeBancaria {
         return "Fraude: " + dadosTreinamento.classAttribute().value((int) previsao);
 
     }
+
+    // Método para imprimir a estrutura da árvore de decisão no console
+    public void exibirArvore() {
+        if (classificador == null) {
+            System.out.println("O modelo precisa ser treinado antes de exibir a árvore.");
+            return;
+        }
+
+        System.out.println("\n=== ESTRUTURA DA ÁRVORE DE DECISÃO (J48) ===");
+        // O método toString() do J48 renderiza a árvore de forma textual e indentada
+        System.out.println(classificador.toString());
+        System.out.println("============================================\n");
+    }
+
 }
