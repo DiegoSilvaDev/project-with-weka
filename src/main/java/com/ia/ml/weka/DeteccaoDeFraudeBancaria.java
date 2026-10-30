@@ -95,7 +95,12 @@ public class DeteccaoDeFraudeBancaria {
         // adicionarTransacao(1000, "nacional", "sim");
         // adicionarTransacao(1500, "nacional", "sim");
         // adicionarTransacao(20000, "nacional", "sim");
+    }
 
+    // Treinamento do modelo
+    public void treinarModelo() throws Exception {
+        classificador = new J48(); // Cria o modelo de decisão chamado J48 (método matemático)
+        classificador.buildClassifier(dadosTreinamento); // Treina o modelo com os dados fornecidos
     }
 
 
