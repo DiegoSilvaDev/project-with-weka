@@ -32,6 +32,12 @@
 
     <dependencies>
 
+        <!-- Driver JDBC do SQLite para permitir a conexão com o banco de dados em arquivo -->
+        <dependency>
+            <groupId>org.xerial</groupId>
+            <artifactId>sqlite-jdbc</artifactId>
+            <version>3.46.0.0</version>
+        </dependency>
         <!-- Persistência de dados e integração com bancos de dados relacionais via JPA/Hibernate -->
         <dependency>
             <groupId>org.springframework.boot</groupId>

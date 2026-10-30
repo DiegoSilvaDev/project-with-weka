@@ -9,13 +9,9 @@ import weka.core.Instance; // Representa uma linha de dados (como uma linha do E
 import weka.core.DenseInstance; // Representa uma linha completa de dados (com valores reais)
 import weka.core.Instances; // O conjunto completo de dados (como uma planilha) - dataSet
 
-// Ferramentas de log usadas para ocultar avisos do Weka (não afetam o funcionamento do código)
-import java.util.logging.Level; // Controla o nível de importância dos avisos exibidos
-import java.util.logging.Logger; // Usado para configurar o sistema de logs do java
+
 
 import java.util.ArrayList;
-
-
 
 public class DeteccaoDeFraudeBancaria {
     private Classifier classificador; // Modelo de classificação utilizado
@@ -92,9 +88,10 @@ public class DeteccaoDeFraudeBancaria {
         // Exemplos adicionais:
         // Transacoes com valores medios/altos em territorio nacional
         // Pode ser usado para demonstrar variação ou desafiar o modelo:
-        // adicionarTransacao(1000, "nacional", "sim");
-        // adicionarTransacao(1500, "nacional", "sim");
-        // adicionarTransacao(20000, "nacional", "sim");
+
+         adicionarTransacao(1000, "nacional", "sim");
+         adicionarTransacao(1500, "nacional", "sim");
+         adicionarTransacao(20000, "nacional", "sim");
     }
 
     // Treinamento do modelo
@@ -117,10 +114,8 @@ public class DeteccaoDeFraudeBancaria {
         double previsao = classificador.classifyInstance(novaInstancia);
         // Obs: classifyInstance retorna um numero decimal/real porque usa o mesmo método para prever classes e números.
 
-        // Transforma o número previsot em texto (ex: 0 "não", 1 "sim") e monta a resposta final
+        // Transforma o número previsto em texto (ex: 0 "nao", 1 "sim") e monta a resposta final
         return "Fraude: " + dadosTreinamento.classAttribute().value((int) previsao);
 
     }
-
-
 }
